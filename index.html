@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Usage Calculator - Africa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Water Usage Calculator</h1>
+            <p>Track your household water consumption and save money across Africa</p>
+        </header>
+
+        <div class="settings-card">
+            <h2> Your Settings</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="country"> Country / Region</label>
+                    <select id="country" onchange="updateWaterRate()">
+                        <option value="">Select your country</option>
+                        <optgroup label="East Africa">
+                            <option value="KE">Kenya</option>
+                            <option value="TZ">Tanzania</option>
+                            <option value="UG">Uganda</option>
+                            <option value="RW">Rwanda</option>
+                            <option value="ET">Ethiopia</option>
+                        </optgroup>
+                        <optgroup label="West Africa">
+                            <option value="NG">Nigeria</option>
+                            <option value="GH">Ghana</option>
+                            <option value="SN">Senegal</option>
+                            <option value="CI">Côte d'Ivoire</option>
+                        </optgroup>
+                        <optgroup label="Southern Africa">
+                            <option value="ZA">South Africa</option>
+                            <option value="ZW">Zimbabwe</option>
+                            <option value="ZM">Zambia</option>
+                            <option value="BW">Botswana</option>
+                        </optgroup>
+                        <optgroup label="North Africa">
+                            <option value="EG">Egypt</option>
+                            <option value="MA">Morocco</option>
+                            <option value="TN">Tunisia</option>
+                        </optgroup>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currency"> Currency</label>
+                    <select id="currency" onchange="calculateAll()">
+                        <option value="KES">KES - Kenyan Shilling</option>
+                        <option value="NGN">NGN - Nigerian Naira</option>
+                        <option value="GHS">GHS - Ghanaian Cedi</option>
+                        <option value="ZAR">ZAR - South African Rand</option>
+                        <option value="TZS">TZS - Tanzanian Shilling</option>
+                        <option value="UGX">UGX - Ugandan Shilling</option>
+                        <option value="EGP">EGP - Egyptian Pound</option>
+                        <option value="MAD">MAD - Moroccan Dirham</option>
+                        <option value="USD">USD - US Dollar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="waterRate"> Water Rate (per 1000 liters)</label>
+                    <input type="number" id="waterRate" step="0.01" min="0" value="53.00" oninput="calculateAll()">
+                    <span class="help-text">Check your water bill for exact rate</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="householdSize"> Household Size</label>
+                    <input type="number" id="householdSize" min="1" value="4" oninput="calculateAll()">
+                    <span class="help-text">Number of people in your home</span>
+                </div>
+            </div>
+
+            <div class="alert alert-info" id="countryInfo" style="display: none;"></div>
+            <div id="statusAlert"></div>
+        </div>
+
+        <div class="activities-section">
+            <h2> Daily Water Activities</h2>
+            <p style="color: #718096; margin-bottom: 15px;">Track how much water you use for each activity. Adjust the frequency and duration to match your household.</p>
+            
+            <div id="activityGrid" class="activity-grid"></div>
+        </div>
+
+        <div class="summary-section">
+            <h2> Water Usage Summary</h2>
+            
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-label">Daily Usage</div>
+                    <div class="summary-value" id="dailyUsage">0 L</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Per Person/Day</div>
+                    <div class="summary-value" id="perPersonUsage">0 L</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Monthly Usage</div>
+                    <div class="summary-value" id="monthlyUsage">0 L</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Monthly Cost</div>
+                    <div class="summary-value" id="monthlyCost">0</div>
+                </div>
+            </div>
+
+            <div class="comparison">
+                <h3> Usage Comparison</h3>
+                <div class="comparison-item">
+                    <span>Your household per person/day:</span>
+                    <strong id="yourPerPerson">0 L</strong>
+                </div>
+                <div class="comparison-item">
+                    <span>WHO recommended minimum:</span>
+                    <strong style="color: #38a169;">50 L</strong>
+                </div>
+                <div class="comparison-item">
+                    <span>African urban average:</span>
+                    <strong style="color: #ed8936;">80 L</strong>
+                </div>
+                <div class="comparison-item">
+                    <span>Global average:</span>
+                    <strong>150 L</strong>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h3> Water Saving Tips</h3>
+                <ul id="savingTips"></ul>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-success" onclick="exportData()"> Export Report</button>
+                <button class="btn-danger" onclick="resetData()"> Reset All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
