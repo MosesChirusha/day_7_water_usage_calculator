@@ -7,9 +7,9 @@
 
 ```bash
 # Clone and run
-git clone https://github.com/yourusername/water-calculator-africa.git
-cd water-calculator-africa
-open water-calculator.html
+git clone https://github.com/MosesChirusha/day_7_water_usage_calculator.git
+cd day_7_water_usage_calculator
+open index.html
 ```
 
 No dependencies, no installation, just open and use.
@@ -24,6 +24,10 @@ No dependencies, no installation, just open and use.
 - **WHO comparison** (50L/person/day minimum)
 - **Export reports** to CSV
 - **100% offline** after first load
+
+## Resources
+- [Live Demo:](https://moseschirusha.github.io/day_7_water_usage_calculator)
+- [Medium Article:](https://moseschirusha.medium.com/your-water-bill-is-a-mystery-heres-how-to-solve-it-and-save-32-in-the-process-174949bcaf6e)
 
 ## Why This Matters
 
